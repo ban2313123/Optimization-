@@ -7,7 +7,7 @@ echo установка программ
 sudo pacman -S  git make
 git clone https://aur.archlinux.org/yay.git
 cd yay
-makepkg -si
+makepkg -sric
 cd ..
 sudo rm -rf yay
 cd
