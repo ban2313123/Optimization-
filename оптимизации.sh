@@ -4,7 +4,7 @@ read -s -p спасибо
 echo запуск обновление системы
 sudo pacman -Syuuu
 echo установка программ 
-sudo pacman -S yay make
+sudo pacman -S  make
 echo оптимизация процессора 
 git clone https://aur.archlinux.org/auto-cpufreq-git.git   
 cd auto-cpufreq-git                                       
