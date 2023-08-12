@@ -6,7 +6,7 @@
 
 ДЛЯ ЗАПУСКА ОТКРЫТЬ КОНСОЛЬ-ТЕРМИНАЛ И ВЕСТИ 
 
-git clone https://github.com/ban2313123/Optimization-.git
-cd Optimization
-chmod +x оптимизации.sh
-bash оптимизации.sh
+git clone 
+cd Optimization 
+chmod +x Optimization-----.sh
+bash Optimization-----.sh
