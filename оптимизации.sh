@@ -25,10 +25,14 @@ echo твики Nvidia
 git clone https://aur.archlinux.org/nvidia-tweaks.git 
 cd nvidia-tweaks                  
 makepkg -sric
-
+cd ~/home
 
 echo ускореный запуск
 git clone https://aur.archlinux.org/ananicy.git 
 cd ananicy                                     
 makepkg -sric                                  
 sudo systemctl enable --now ananicy
+cd ~/home
+
+
+reboot
