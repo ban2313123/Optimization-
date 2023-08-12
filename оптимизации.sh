@@ -4,7 +4,11 @@ read -s -p спасибо
 echo запуск обновление системы
 sudo pacman -Syuuu
 echo установка программ 
-sudo pacman -S  make
+sudo pacman -S  git make
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+cd ~/home
 echo оптимизация процессора 
 git clone https://aur.archlinux.org/auto-cpufreq-git.git   
 cd auto-cpufreq-git                                       
