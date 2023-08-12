@@ -47,7 +47,7 @@ makepkg -sric
 sudo systemctl enable --now ananicy
 cd .. 
 sudo rf -rf ananicy
-cd 
-
+cd
+sudo rm -rf Optimization 
 
 reboot
