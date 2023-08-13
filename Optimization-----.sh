@@ -59,7 +59,7 @@ elif [[ "$answer" == "no" ]]; then
     echo "Вы ввели no"
      echo скип
 else
-    
+fi    
 
 echo ускореный запуск
 git clone https://aur.archlinux.org/ananicy.git 
