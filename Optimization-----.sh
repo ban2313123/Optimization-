@@ -1,6 +1,7 @@
 #!/bin/bash
 echo просьба закрыть все програамы. для продолжения нажать энтер. ПОСЛЕ СИСТЕМА РЕБУТНИЦА. Не отходите от системы она может запрашивать пароль sudo
 read -s -p спасибо
+reflector --latest 15 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 echo запуск обновление системы
 sudo pacman -Syuuu --noconfirm
 echo установка программ 
