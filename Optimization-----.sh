@@ -58,6 +58,7 @@ cd
 elif [[ "$answer" == "no" ]]; then
     echo "Вы ввели no"
      echo скип
+     
 else
 fi    
 
