@@ -60,6 +60,7 @@ elif [[ "$answer" == "no" ]]; then
      echo скип
      
 else
+
 fi    
 
 echo ускореный запуск
