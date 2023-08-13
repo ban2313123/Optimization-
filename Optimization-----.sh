@@ -32,10 +32,8 @@ sudo pacman -S wine-staging winetricks wine-mono giflib lib32-giflib libpng lib3
 "yes"
 elif [[ "$answer" == "no" ]]; then
     echo хорошо скип
-    
-   else
-   
-   fi
+    else
+    fi
 
 
 echo твики для игр
@@ -60,10 +58,8 @@ cd
 elif [[ "$answer" == "no" ]]; then
     echo "Вы ввели no"
      echo скип
-     
-else
-
-fi    
+    else
+    fi
 
 echo ускореный запуск
 git clone https://aur.archlinux.org/ananicy.git 
