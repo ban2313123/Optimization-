@@ -58,7 +58,7 @@ else
 	cd ..
 	rm -rf nvidia-tweaks
 	cd
-fi
+fi    
 
 echo "Ускореный запуск"
 cd .cache/
