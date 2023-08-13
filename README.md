@@ -1,12 +1,11 @@
-оптимизация процесора
-твик драйвера нвидии
-улучшение работы ссд
-ускоренный запуск системы
+Arch linux only
 
-
-ДЛЯ ЗАПУСКА ОТКРЫТЬ КОНСОЛЬ-ТЕРМИНАЛ И ВЕСТИ 
-
-git clone https://github.com/ban2313123/Optimization-.git
-cd Optimization 
+Оптимизация процесора
+Твик драйвера нвидии
+Улучшение работы ссд
+Ускоренный запуск системы
+``` bash
+wget https://raw.githubusercontent.com/ban2313123/Optimization-/main/Optimization-----.sh
 chmod +x Optimization-----.sh
 bash Optimization-----.sh
+```
