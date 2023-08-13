@@ -1,7 +1,7 @@
 #!/bin/bash
 echo просьба закрыть все програамы. для продолжения нажать энтер. ПОСЛЕ СИСТЕМА РЕБУТНИЦА. Не отходите от системы она может запрашивать пароль sudo
 read -s -p спасибо
-reflector --latest 15 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+sudo reflector --latest 15 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 echo запуск обновление системы
 sudo pacman -Syuuu --noconfirm
 echo установка программ 
@@ -73,5 +73,11 @@ cd
 sudo rm -rf Optimization 
 yay -Syuuu --noconfirm
 yay -S --noconfirm Octopi
+sudo pacman -Syy --noconfirm
 
+sudo pacman-key --recv-key FBA220DFC880C036 --keyserver keyserver.ubuntu.com
+sudo pacman-key --lsign-key FBA220DFC880C036
+sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+sudo echo "[chaotic-aur]" >> /etc/pacman.conf
+sudo echo "Include = /etc/pacman.d/chaotic-mirrorlist" >> /etc/pacman.conf
 reboot
