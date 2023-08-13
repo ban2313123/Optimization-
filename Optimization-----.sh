@@ -1,7 +1,7 @@
 #!/bin/bash
 read -sp "Можно закрыть все програмы. Для продолжения нажать Enter. После система перезагрузиться или вы сможете перезагрузить её позже сами. Не отходите от системы она может запрашивать пароль sudo и часто спрашивает подтверждение"
 read -p "Обновить систему? [y/N]" answer
-if [[ $answer == *"y"* ]]; then
+if [ $answer == *"y"* ]; then
 	sudo pacman -Syu --noconfirm git make --needed
 fi
 
@@ -12,7 +12,7 @@ fi
 # sudo rm -rf yay
 
 read -p "Программа для оптимизация процессора [Y/n]" answer
-if [[ $answer == *"n"* ]]; then
+if [ $answer == *"n"* ]; then
 	echo "Скип"
 else
 	cd .cache/
@@ -27,7 +27,7 @@ else
 fi
 
 read -p "Установить wine? [y/N]" answer
-if [[ $answer == *"y"* ]]; then
+if [ $answer == *"y"* ]; then
 	echo "Установка wine"
 	sudo pacman -S wine-staging winetricks wine-mono giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader lutris --needed
 else
@@ -44,7 +44,6 @@ else
 	sudo systemctl enable fstrim.timer
 	sudo fstrim -v /
 	sudo fstrim -va /
-	# ??????? Что это откуда?
 fi
 
 read -p "Установить твики драйвера Nvidia? [Y/n]" answer
@@ -58,17 +57,21 @@ else
 	cd ..
 	rm -rf nvidia-tweaks
 	cd
-fi    
+fi
 
-echo "Ускореный запуск"
-cd .cache/
-git clone https://aur.archlinux.org/ananicy.git 
-cd ananicy                                     
-makepkg -sric
-sudo systemctl enable --now ananicy
-cd .. 
-sudo rf -rf ananicy
-cd
+read -p "Ускоренный запуск [Y/n]" answer
+if [[ $answer == *"n"* ]]; then
+	echo "Скип"
+else
+	cd .cache/
+	git clone https://aur.archlinux.org/ananicy.git 
+	cd ananicy                                     
+	makepkg -sric
+	sudo systemctl enable --now ananicy
+	cd .. 
+	sudo rf -rf ananicy
+	cd
+fi
 # yay -Syuuu --noconfirm
 # yay -S --noconfirm Octopi
 
