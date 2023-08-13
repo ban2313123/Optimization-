@@ -32,6 +32,7 @@ sudo pacman -S wine-staging winetricks wine-mono giflib lib32-giflib libpng lib3
 "yes"
 elif [[ "$answer" == "no" ]]; then
     echo хорошо скип
+    
    else
    
    fi
