@@ -1,83 +1,83 @@
 #!/bin/bash
-echo просьба закрыть все програамы. для продолжения нажать энтер. ПОСЛЕ СИСТЕМА РЕБУТНИЦА. Не отходите от системы она может запрашивать пароль sudo
-read -s -p спасибо
-sudo reflector --latest 15 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
-echo запуск обновление системы
-sudo pacman -Syuuu --noconfirm
-echo установка программ 
-sudo pacman -S  --noconfirm git make
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -sric
-cd ..
-sudo rm -rf yay
-cd
-echo оптимизация процессора 
-git clone https://aur.archlinux.org/auto-cpufreq-git.git   
-cd auto-cpufreq-git                                       
-makepkg -sric           
-sudo systemctl enable auto-cpufreq                             
-sudo systemctl start auto-cpufreq
-cd ..
-sudo rm -rf auto-cpufreq
-cd
+read -sp "Можно закрыть все програмы. Для продолжения нажать Enter. После система перезагрузиться или вы сможете перезагрузить её позже сами. Не отходите от системы она может запрашивать пароль sudo и часто спрашивает подтверждение"
+read -p "Обновить систему? [y/N]" answer
+if [ $answer == *"y"* ]; then
+	sudo pacman -Syu --noconfirm git make --needed
+fi
 
+# git clone https://aur.archlinux.org/yay.git
+# cd yay
+# makepkg -sric
+# cd ..
+# sudo rm -rf yay
 
+read -p "Программа для оптимизация процессора [Y/n]" answer
+if [ $answer == *"n"* ]; then
+	echo "Скип"
+else
+	cd .cache/
+	git clone https://aur.archlinux.org/auto-cpufreq.git
+	cd auto-cpufreq
+	makepkg -sric
+	sudo systemctl enable auto-cpufreq                             
+	sudo systemctl start auto-cpufreq
+	cd ..
+	sudo rm -rf auto-cpufreq
+	cd
+fi
 
-read -p "установить wine?Введите yes или no: " answer
+read -p "Установить wine? [y/N]" answer
+if [ $answer == *"y"* ]; then
+	echo "Установка wine"
+	sudo pacman -S wine-staging winetricks wine-mono giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader lutris --needed
+else
+	echo "Скип"
+fi
 
-if [[ "$answer" == "yes" ]]; then
-    echo "Вы ввели yes"
-    echo начата установка wine
-sudo pacman -S wine-staging winetricks wine-mono giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader lutris
-"yes"
-elif [[ "$answer" == "no" ]]; then
-    echo хорошо скип
-    else
-    fi
+echo "Твики для игр"
+sudo pacman -S --noconfirm --needed gamemode lib32-gamemode
 
+read -p "Оптимизация ssd [Y/n]" answer
+if [[ $answer == *"n"* ]]; then
+	echo "Скип"
+else
+	sudo systemctl enable fstrim.timer
+	sudo fstrim -v /
+	sudo fstrim -va /
+fi
 
-echo твики для игр
-sudo pacman -S --noconfirm gamemode lib32-gamemode
+read -p "Установить твики драйвера Nvidia? [Y/n]" answer
+if [[ $answer == *"n"* ]]; then
+	echo "Скип"
+else
+	cd .cache/
+	git clone https://aur.archlinux.org/nvidia-tweaks.git
+	cd nvidia-tweaks
+	makepkg -sric
+	cd ..
+	rm -rf nvidia-tweaks
+	cd
+fi
 
-echo оптимизация ssd
-sudo systemctl enable fstrim.timer            
-sudo fstrim -v /                                  
-sudo fstrim -va /
+read -p "Ускоренный запуск [Y/n]" answer
+if [[ $answer == *"n"* ]]; then
+	echo "Скип"
+else
+	cd .cache/
+	git clone https://aur.archlinux.org/ananicy.git 
+	cd ananicy                                     
+	makepkg -sric
+	sudo systemctl enable --now ananicy
+	cd .. 
+	sudo rf -rf ananicy
+	cd
+fi
+# yay -Syuuu --noconfirm
+# yay -S --noconfirm Octopi
 
-
-read -p "установить твики драйвера Nvidia?видите yes либо no.  " answer
-
-if [[ "$answer" == "yes" ]]; then
-    echo "Вы ввели yes"
-    git clone https://aur.archlinux.org/nvidia-tweaks.git 
-cd nvidia-tweaks                  
-makepkg -sric
-cd ..
-rm -rf nvidia-tweaks
-cd 
-elif [[ "$answer" == "no" ]]; then
-    echo "Вы ввели no"
-     echo скип
-    else
-    fi
-
-echo ускореный запуск
-git clone https://aur.archlinux.org/ananicy.git 
-cd ananicy                                     
-makepkg -sric
-sudo systemctl enable --now ananicy
-cd .. 
-sudo rf -rf ananicy
-cd
-sudo rm -rf Optimization 
-yay -Syuuu --noconfirm
-yay -S --noconfirm Octopi
-sudo pacman -Syy --noconfirm
-
-sudo pacman-key --recv-key FBA220DFC880C036 --keyserver keyserver.ubuntu.com
-sudo pacman-key --lsign-key FBA220DFC880C036
-sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
-sudo echo "[chaotic-aur]" >> /etc/pacman.conf
-sudo echo "Include = /etc/pacman.d/chaotic-mirrorlist" >> /etc/pacman.conf
-reboot
+read -p "Перезагрузка [Y/n]" answer
+if [[ $answer == *"n"* ]]; then
+	echo "Перезагрузитесь"
+else
+	reboot
+fi
