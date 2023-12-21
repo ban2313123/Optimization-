@@ -67,6 +67,14 @@ else
 fi
 
 
+read -p "устоновить steam [y/n]" answer
+if [[ $answer == *"n"* ]]; then
+	echo "Скип"
+else
+	sudo pacman -S steam
+fi
+
+
 
 read -p "Ускоренный запуск [y/n]" answer
 if [[ $answer == *"n"* ]]; then
