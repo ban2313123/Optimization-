@@ -59,6 +59,15 @@ else
 	cd
 fi
 
+read -p "устоновка google-chrome [y/n]" answer
+if [[ $answer == *"n"* ]]; then
+	echo "Скип"
+else
+	yay -S google-chrome 
+fi
+
+
+
 read -p "Ускоренный запуск [y/n]" answer
 if [[ $answer == *"n"* ]]; then
 	echo "Скип"
