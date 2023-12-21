@@ -1,10 +1,10 @@
 #!/bin/bash
 read -sp "Можно закрыть все програмы. Для продолжения нажать Enter. После система перезагрузиться или вы сможете перезагрузить её позже сами. Не отходите от системы она может запрашивать пароль sudo и часто спрашивает подтверждение"
 read -p "Обновить систему? [y/N]" answer
-if [ $answer == *"y"* ]; then
+if [ $answer == *"n"* ]; then
 	sudo pacman -Syu --noconfirm git make --needed
 fi
-mkdir .cache/
+mkdir cache/
  git clone https://aur.archlinux.org/yay.git
  cd yay
  makepkg -sric
