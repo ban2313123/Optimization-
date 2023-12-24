@@ -4,7 +4,7 @@ read -p "Обновить систему? [y/N]" answer
 if [ $answer == *"n"* ]; then
 	sudo pacman -Syu --noconfirm git make --needed
 fi
-mkdir cache/
+mkdir cache
  git clone https://aur.archlinux.org/yay.git
  cd yay
  makepkg -sric
