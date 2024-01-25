@@ -1,0 +1,13 @@
+#!/bin/bash
+mkdir -pv /boot/efi &&
+mount -v -t vfat /dev/sda1 /boot/efi
+
+cat >> /etc/fstab << EOF
+/dev/sda1 /boot/efi vfat defaults 0 1
+EOF
+
+ountpoint /sys/firmware/efi/efivars || mount -v -t efivarfs efivarfs /sys/firmware/efi/efivars
+
+cat >> /etc/fstab << EOF
+efivarfs /sys/firmware/efi/efivars efivarfs defaults 0 0
+EOF
