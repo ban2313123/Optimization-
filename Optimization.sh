@@ -8,7 +8,7 @@ mkdir cache
 
 
 
-read -p "Программа для оптимизация процессора [y/n]" answer
+read -p "Программа для оптимизация процессора работает токо для inetel  [y/n]" answer
 if [ $answer == *"n"* ]; then
 	echo "Скип"
 else
